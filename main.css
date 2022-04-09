@@ -190,18 +190,35 @@ h1, h2, h3, h4 {
   }
 
   @media only screen and (max-width: 600px) {
+      h1 {
+          font-size: x-large;
+          text-align: center;
+      }
+      section {
+          margin: 0 auto;
+          padding: 0 1.875rem;
+      }
+      .main-container {
+          justify-content: flex-start;
+          max-width: 100%;
+          margin: 0 auto;
+      }
       .footer-container {
           flex-direction: column;
-          width: 100%;
+          width: 80%;
           align-items: center;
+          justify-content: space-around;
+
       }
       .col-1, .col-2, .col-3 {
-          width: 90%;
+          width: 100%;
           align-items: flex-start;
           margin: 0 0 1.875rem 0;
-          padding: 0;
       }
-      .
-      .photo-container {
-          display: none;
-  }
+      .thumb {
+            width: 92vw;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+      }
