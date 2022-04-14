@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
 :root {
@@ -9,107 +8,121 @@
     --gray: rgb(190, 190, 190);
     --black: rgba(0,0,0,1);
   }
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+	margin: 0;
+	background: white;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
     line-height: 1.5;
-    color: var(--black);
-    background-color: var(--white);
-}
-a, a.visited, a.active {
-    color: var(--dodger);
-    text-decoration: none;
-}
-a:hover {
-    color:white;
-}
-header {
-    width: 100%;
-    position: sticky;
-    top: 0;
-}
-/* -- -- NAVIGATION -- -- */
-
-.navbar {
-    background: var(--white);
-    height: 6.2rem;
-    border-bottom: 1px solid gray;
-    box-shadow: 0 2px 8px var(--gray);
-}
-.container {
-    max-width: 84.5%;
-    margin: 0 auto;
-    padding: 0;   
 }
 
-ul {
-    list-style-type: none;
+/* navigation styles start here */
+
+.header {
+  background: var(--white);
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  padding-left: 20px;
 }
-.navbar .logo {
-    min-width: fit-content;
+.logo {
+    width: 40%;
 }
-.navbar .banner {
-    display: block;
-    height: 15em;
+/* changed this from the tutorial video to
+   allow it to gain focus, making it tabbable */
+.nav-toggle {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
 }
 
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 2em;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
-.navbar ul {
-    display: flex;
-}
-.navbar li {
-    padding: 0 1.875rem 0 1.875rem;
-    border-right: 1px solid silver;
-}
-.navbar li:first-child {
-    border-left: 1px solid silver;
-}
-.navbar a {
-    position: relative;
-    color: #000;
-    font-size: 14pt;
-    text-decoration: none;
-  }
-.navbar a:hover {
-    color: #000;
-  }
-.navbar a::before {
-    content: "";
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 8px;
-    bottom: -10px;
-    left: 0;
-    background-color: var(--blue);
-    transform: scaleX(0);
-    transform-origin: top left;
-    transition: transform 0.3s ease;
-  }
-.navbar a:hover::before {
-    transform: scaleX(1);
-  }
 
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: black;
+  height: 4px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
 
-/* -- -- MAIN CONTENT -- -- */
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
 
-section {
-    margin-left: 2.5rem;
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+nav {
+  position: absolute;
+  text-align: center;
+  top: 100%;
+  left: 0;
+  background: var(--white);
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  padding-top: 30px;
+  transition: transform 400ms ease-in-out;
+  border-top: 1px solid silver;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1.5em;
+  margin-left: 1em;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1,1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
 }
 .main-container {
-    max-width: 72.5%;
-    margin: 4.4rem auto;
+    margin-top: 6em;
+    padding: 0 1.5em;
 }
 footer {
     width: 100%;
@@ -123,27 +136,22 @@ footer {
 }
 .footer-container {
     display: flex;
-    justify-content: space-between;
-    width: 72.5%;
+    flex-direction: column;
+    width: 100%;
     margin: 0 auto;
-    padding: 1.875rem 0;
+    padding: 1.5em;
 }
-.col-1 {
-    width: 33%;
-}
-.col-2 {
-    padding-top: 38px;
-    width: 25%;
-}
+.col-1, 
+.col-2,
 .col-3 {
     display: flex;
     flex-direction: column;
-    width: 33%;
-    align-items: flex-end;
-    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2em;
 }
 .social {
-    margin: 10px 0 60px 0;
+    padding: 1em;
 }
 .social a, .social a.visited {
     color: white;
@@ -157,7 +165,7 @@ i {
 #copyright {
     display: block;
     font-size: 8pt;
-    text-align: right;
+    text-align: center;
 }
 address {
     font-style: normal;
@@ -180,52 +188,92 @@ h1, h2, h3, h4 {
     font-family: 'Playfair Display', serif;
     margin-bottom: 10px;
 }
-  @media only screen and (max-width: 600px) {
-      h1 {
-          font-size: x-large;
-          text-align: center;
-      }
-      section {
-          margin: 0 auto;
-          padding: 0 1.875rem;
-      }
-      .main-container {
-          justify-content: flex-start;
-          max-width: 100%;
-          margin: 0 auto;
-      }
-      .footer-container {
-          flex-direction: column;
-          width: 100%;
-          align-items: center;
-          justify-content: space-around;
 
-      }
-      .col-1, .col-2, .col-3 {
-          width: 8vw;
-          align-items: flex-start;
-      }
-      .thumb {
-            width: 92vw;
-            height: auto;
-            margin-bottom: 15px;
-        }
-      }
 
-/* Responsiveness */
-@media (min-width: 768px) {
-    .nav{
-        max-height: none;
-        top: 0;
-        position: relative;
-        float: right;
-        width: fit-content;
-    }
-    .menu li{
-        float: left;
-    }
-    .menu a:hover{
-        background-color: transparent;
-        color: var(--gray);
-    }
+@media screen and (min-width: 800px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    height: 6.2rem;
+    border-bottom: 1px solid gray;
+    box-shadow: 0 2px 8px gray;
+  }
+  .logo {
+      width: 15em;
+      display: block;
+  }
+  .container {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 auto;
+      width: 80rem;
+  }
+
+  nav {
+    width: 100%;
+    /* the following lines are not from my video, but add Edge support */
+    position: relative;
+    text-align: left;
+    transition: none;
+    transform: scale(1,1);
+    background: none;
+    top: initial;
+    left: initial;
+    /* end Edge support stuff */
+    padding-top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border: 0;
+  }
+  
+  nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    margin: 0;
+    padding: 0 1.875rem 0 1.875rem;
+    border-right: 1px solid silver;
+}
+  nav li:first-child {
+    border-left: 1px solid silver;
+}
+  
+  nav a {
+    opacity: 1;
+    position: relative;
+    font-size: 14pt;
+  }
+  
+  nav a::before {
+    content: '';
+    display: block;
+    height: 8px;
+    background: var(--blue);
+    position: absolute;
+    bottom: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+  
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
+  .main-container {
+    max-width: 72.5%;
+    margin: 10em auto;
+}
+  .footer-container {
+      flex-direction: row;
+      width: 80em;
+  }
 }
